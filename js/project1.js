@@ -2,7 +2,7 @@ var productName = document.getElementById('productName');
 var productPrice = document.getElementById('productPrice');
 var productCategory = document.getElementById('productCategory');
 var productDesc = document.getElementById('productDesc');
-var inputs = document.getElementsByClassName('form-control');
+var inputs =Array.from(document.getElementsByClassName('form-control')) 
 var addBtn = document.getElementById('addBtn');
 var currentIndex = 0;
 
@@ -157,7 +157,12 @@ var nameAlert=document.getElementById('nameAlert');
 var priceAlert=document.getElementById('priceAlert');
 var categoryAlert=document.getElementById('categoryAlert');
 
-productName.onkeyup= function validProductName()
+productName.addEventListener('keyup', validProductName)
+productCategory.addEventListener('keyup' , validProductCategory)
+productPrice.addEventListener('keyup' , validProductprice)
+
+
+function validProductName()
 {
     var regex = /^[A-Z][a-z]{2,5}$/;
 
@@ -165,7 +170,6 @@ productName.onkeyup= function validProductName()
     {
         productName.classList.replace('is-invalid' , 'is-valid' );
         nameAlert.classList.add('d-none');
-        
         return true;
 
     }
@@ -174,15 +178,14 @@ productName.onkeyup= function validProductName()
         productName.classList.add('is-invalid');
         nameAlert.classList.remove('d-none');
         return false;
-
-    };
+    }
 
     
 
 }
 
 
-productPrice.onkeyup= function validProductprice()
+ function validProductprice()
 {
     var regex = /^[0-9]{2,4}$/;
 
@@ -202,9 +205,9 @@ productPrice.onkeyup= function validProductprice()
 }
 
 
-productCategory.onkeyup= function validProductCategory()
+function validProductCategory()
 {
-    var regex = /^[A-Z][a-z]{2,5}$/;
+    var regex = /^[A-Z][a-z]{2,9}$/;
 
     if(regex.test(productCategory.value)==true)
     {
@@ -222,16 +225,17 @@ productCategory.onkeyup= function validProductCategory()
 }
 
 
-function changeDisable()
+for(var i=0 ; i<inputs.length ; i++)
 {
-    if( validProductName() ==true )
+    inputs[i].addEventListener('keyup' , function()
     {
-        addBtn.removeAttribute('disabled');
+    if( validProductName() && validProductCategory() && validProductprice() )
+    {
+            addBtn.removeAttribute('disabled');
     }
     else
-    {
+    {   
         addBtn.disabled=true;
     }
+    })
 }
-
-
