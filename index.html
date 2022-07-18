@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <title> Crud app </title>
+</head>
+<body>
+    <div class=" w-75 mx-auto py-5 ">
+        <h3 class=" fw-bold  ">Progect Mangment System</h3>
+
+        <label for="productName"> Product Name: <span class="  text-danger"> *</span></label>
+        <input  type="text " class=" form-control mb-2" id="productName">
+        <div class=" alert alert-danger py-3 d-none" id="nameAlert"> Product Name Should be ,,,,,</div>
+
+        <label for="productPrice"> Product Price: <span class="  text-danger"> *</span></label>
+        <input type="number" class=" form-control mb-2" id="productPrice">
+        <div class=" alert alert-danger py-3 d-none" id="priceAlert"> Product Price Should be ,,,,,</div>
+
+
+        <label for="productCategory"> Product Category: <span class="  text-danger"> *</span></label>
+        <input type="text " class=" form-control mb-2" id="productCategory">
+        <div class=" alert alert-danger py-3 d-none" id="categoryAlert"> Product Category Should be ,,,,,</div>
+
+
+
+        <label for="productDesc"> Product Descreption:</label>
+        <textarea type="text " class=" form-control mb-2" id="productDesc"></textarea>
+        
+
+        <button disabled onclick=" addProduct() " class=" btn btn-outline-info   " id="addBtn">Add Product</button>
+
+
+
+       
+
+
+    </div>
+
+    <input type="text" onkeyup="searchProduct(this.value)" id="" class=" form-control w-75 mx-auto mb-5" placeholder=" Search by Name .. ">
+
+    <div class="row">
+        <div class="col-md-9 m-auto">
+            
+            <table class=" table   m-auto ">
+                <thead>
+
+                    <th> index </th>
+                    <th> ProductName </th>
+                    <th> ProductPrice</th>
+                    <th> ProductCategory </th>
+                    <th> ProductDescrption </th>
+                    <th> Update </th>
+                    <th> Delete </th>
+                    
+                </thead>
+                <tbody id="tableBody">
+                    
+                </tbody>
+
+            </table>
+
+
+        </div>
+    </div>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/project1.js"></script>
+</body>
+</html>
