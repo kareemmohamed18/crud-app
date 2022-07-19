@@ -26,17 +26,19 @@ addBtn.onclick= function ()
     if(addBtn.innerHTML== 'Add Product')
     {
         addProduct();
-       
-        
     }
     else
     {
         updateProduct()
+        addBtn.innerHTML= 'Add Product'
     }
+
+   
 
    
     clearForm();
     displayProduct()
+    clearClass()
 }
 
 function addProduct()
@@ -95,7 +97,6 @@ function dleteProduct(index)
     productsContainer.splice(index ,1);
     displayProduct();
     localStorage.setItem('productsList' , JSON.stringify(productsContainer));
-
 }
 
 
@@ -149,8 +150,6 @@ function updateProduct()
     };
     productsContainer[currentIndex]=product;
     localStorage.setItem('productsList' , JSON.stringify(productsContainer));
- 
-
 }
 
 var nameAlert=document.getElementById('nameAlert');
@@ -162,20 +161,29 @@ productCategory.addEventListener('keyup' , validProductCategory)
 productPrice.addEventListener('keyup' , validProductprice)
 
 
+function clearClass()
+{
+    productName.classList.remove( 'is-valid' );
+    productCategory.classList.remove( 'is-valid' );
+    productPrice.classList.remove( 'is-valid' );
+    addBtn.disabled=true;
+}
 function validProductName()
 {
     var regex = /^[A-Z][a-z]{2,5}$/;
 
     if(regex.test(productName.value)==true)
     {
-        productName.classList.replace('is-invalid' , 'is-valid' );
+        productName.classList.add( 'is-valid' );
+        productName.classList.remove( 'is-invalid' );
         nameAlert.classList.add('d-none');
-        return true;
+        return true; 
 
     }
     else
     {
         productName.classList.add('is-invalid');
+        productName.classList.remove( 'is-valid' );
         nameAlert.classList.remove('d-none');
         return false;
     }
